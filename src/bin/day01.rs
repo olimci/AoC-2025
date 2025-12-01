@@ -16,17 +16,16 @@ fn part_1() -> isize {
             .parse()
             .unwrap_or_else(|e| panic!("failed to parse {line}: {e}"));
 
-        match dir {
-            "L" => counter -= num,
-            "R" => counter += num,
+        let sign = match dir {
+            "L" => -1,
+            "R" => 1,
             _   => panic!("unknown direction {dir}!"),
-        }
+        };
 
-        counter = util::modulo(counter, 100);
+        let raw = counter + sign * num;
 
-        if counter == 0 {
-            zero_counter += 1;
-        }
+        counter = util::modulo(raw, 100);
+        zero_counter += if counter == 0 {1} else {0}
     }
 
     zero_counter
@@ -55,11 +54,8 @@ fn part_2() -> isize {
         let raw = counter + sign * num;
         let next = util::modulo(raw, 100);
         let wraps = raw.div_euclid(100).abs()
-            + if next == 0    && sign == -1 {1} else {0}
+            + if next    == 0 && sign == -1 {1} else {0}
             - if counter == 0 && sign == -1 {1} else {0};
-
-
-        println!("{} + {} -> {} -> {} ({})", counter, num*sign, raw, next, wraps);
 
         zero_counter += wraps;
         counter = next;
