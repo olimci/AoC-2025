@@ -25,7 +25,7 @@ fn part_1() -> isize {
         let raw = counter + sign * num;
 
         counter = util::modulo(raw, 100);
-        zero_counter += if counter == 0 {1} else {0}
+        zero_counter += if counter == 0 {1} else {0};
     }
 
     zero_counter
