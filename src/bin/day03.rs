@@ -15,12 +15,13 @@ fn argmax(bs: &[u8]) -> (usize, u8) {
 }
 
 fn solve(input: &str, n: usize) -> usize {
+    let scl_0 = usize::pow(10, (n-1) as u32);
     let max_j = |s: &str| {
         let bs = s.as_bytes();
         let bl = bs.len();
 
         let mut acc: usize = 0;
-        let mut scl: usize = usize::pow(10, (n-1) as u32);
+        let mut scl: usize = scl_0;
         let mut off: usize = 0;
 
         for i in 0..n {
