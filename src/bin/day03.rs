@@ -28,7 +28,7 @@ fn solve(input: &str, n: usize) -> usize {
             let r = bl + i + 1 - n;
             let (i, b) = argmax(&bs[off..r]);
 
-            off = off+i+1;
+            off += i+1;
             acc += ((b - b'0') as usize)*scl;
             scl /= 10;
         }
