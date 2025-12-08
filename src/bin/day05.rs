@@ -89,7 +89,6 @@ fn solve_1(input: &str) {
         }
     }
 
-
     println!("Fresh: {fresh}");
     println!("Total: {total}");
 }
